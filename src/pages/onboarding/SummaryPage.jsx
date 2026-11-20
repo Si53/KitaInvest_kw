@@ -187,7 +187,7 @@ export function SummaryPage() {
                 <strong>Catatan Edukasi Literasi Finansial:</strong>
                 <p>
                   Angka selisih ini merupakan murni hasil pengurangan matematis sederhana antara pemasukan dan
-                  pengeluaran bulanan. Sesuai prinsip edukasi <em>RULES.md</em>, angka ini tidak otomatis dianggap
+                  pengeluaran bulanan. Angka ini tidak otomatis dianggap
                   sebagai dana bebas yang siap diinvestasikan, melainkan perlu dipertimbangkan terlebih dahulu untuk
                   pos dana darurat keluarga dan kebutuhan tak terduga.
                 </p>
@@ -203,14 +203,14 @@ export function SummaryPage() {
             className="btn-secondary-light"
             onClick={() => navigateTo('form')}
           >
-            ← Ubah Data Formulir
+            Ubah Data Formulir
           </button>
           <button
             type="button"
             className="btn-primary-lime"
             onClick={() => navigateTo('dashboard')}
           >
-            Lanjut ke Dasbor KitaInvest →
+            Lanjut ke Dasbor KitaInvest
           </button>
         </div>
       </div>

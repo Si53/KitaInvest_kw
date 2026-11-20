@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useApp } from './context/AppContext.jsx';
-import { useSmoothScrollToTop } from './utils/useSmoothScrollToTop.js';
 import { Navbar } from './components/common/Navbar.jsx';
 import { Footer } from './components/common/Footer.jsx';
 import { Alert } from './components/common/Alert.jsx';
@@ -14,10 +13,11 @@ import { JourneyPage } from './pages/journey/JourneyPage.jsx';
 import { SimulationPage } from './pages/simulation/SimulationPage.jsx';
 
 export function App() {
-  const { currentPage, isStorageWarningVisible, navigateTo } = useApp();
+  const { currentPage, isStorageWarningVisible } = useApp();
 
-  // Auto smooth scroll ke paling atas saat halaman utama berganti
-  useSmoothScrollToTop([currentPage]);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [currentPage]);
 
   return (
     <>
@@ -33,7 +33,7 @@ export function App() {
           </div>
         )}
 
-        <div key={currentPage} className="page-transition-enter">
+        <div>
           {currentPage === 'home' && <HomePage />}
           {currentPage === 'category' && <CategorySelectPage />}
           {currentPage === 'form' && <ProfileFormPage />}

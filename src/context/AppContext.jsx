@@ -9,6 +9,7 @@
  */
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { TOPICS } from '../data/topics/topicsData.js';
 import {
   isLocalStorageAvailable,
   getStoredCategory,
@@ -37,8 +38,8 @@ const INITIAL_SIMULATION_DATA = {
   danaAwal: '',
   setoranBulanan: '',
   jangkaWaktuBulan: '',
-  pertumbuhanTahunan: '12',
-  inflasiTahunan: '5',
+  pertumbuhanTahunan: '0',
+  inflasiTahunan: '0',
 };
 
 export function AppProvider({ children }) {
@@ -50,7 +51,13 @@ export function AppProvider({ children }) {
 
   // 1. Persistent State (localStorage)
   const [category, setCategoryState] = useState(() => getStoredCategory());
-  const [learningProgress, setLearningProgressState] = useState(() => getStoredLearningProgress());
+  const [learningProgress, setLearningProgressState] = useState(() => {
+    const stored = getStoredLearningProgress();
+    const availableIds = TOPICS.filter((topic) => topic.hasContent).map((topic) => topic.id);
+    const completed = stored.completedTopics.filter((id) => availableIds.includes(id));
+    const scores = Object.fromEntries(completed.map((id) => [id, stored.quizScores[id] ?? 0]));
+    return computeGamification(completed, scores);
+  });
 
   // 2. Pure In-Memory Financial State (Hilang saat reload)
   const [financialData, setFinancialData] = useState(INITIAL_FINANCIAL_DATA);
@@ -65,7 +72,6 @@ export function AppProvider({ children }) {
 
   const navigateTo = (page) => {
     setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const selectCategory = (newCategory) => {
@@ -92,6 +98,7 @@ export function AppProvider({ children }) {
   };
 
   const completeTopic = (topicId, score = 100) => {
+    if (!TOPICS.some((topic) => topic.id === topicId && topic.hasContent)) return;
     setLearningProgressState((prev) => {
       const completedSet = new Set(prev.completedTopics || []);
       completedSet.add(topicId);

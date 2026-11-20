@@ -48,8 +48,8 @@ export function CategorySelectPage() {
             Pilih Kategori <span className="text-lime-highlight">Profil Anda</span>
           </h1>
           <p className="fintech-page-subtitle">
-            Pilihan kategori membantu KitaInvest menyesuaikan contoh studi kasus, sudut pandang simulasi,
-            dan urutan materi. Pilihan dapat diubah kapan saja tanpa menghapus materi yang sudah dipelajari.
+            Pilih kategori untuk mengisi data profil sesuai kondisi kamu.
+            Pilihan ini dapat diubah kapan saja.
           </p>
         </div>
       </section>
@@ -86,7 +86,7 @@ export function CategorySelectPage() {
                     handleSelect(item.id);
                   }}
                 >
-                  {isSelected ? 'Lanjut Isi Profil →' : `Pilih ${item.id} →`}
+                  {isSelected ? 'Lanjut Isi Profil' : `Pilih ${item.id}`}
                 </button>
               </div>
             );

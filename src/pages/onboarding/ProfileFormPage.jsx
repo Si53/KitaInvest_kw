@@ -36,7 +36,7 @@ export function ProfileFormPage() {
               className="btn-primary-lime"
               onClick={() => navigateTo('category')}
             >
-              Pilih Kategori Peran Sekarang →
+              Pilih Kategori Peran Sekarang
             </button>
           </div>
         </div>
@@ -135,8 +135,7 @@ export function ProfileFormPage() {
             Formulir Profil Keuangan <span className="text-lime-highlight">({category})</span>
           </h1>
           <p className="fintech-page-subtitle">
-            Data ini hanya disimpan sementara di memori peramban Anda (in-memory) dan akan otomatis
-            terhapus saat halaman dimuat ulang sesuai prinsip privasi KitaInvest.
+            Isi data profil untuk latihan. Angka ini akan hilang saat halaman dimuat ulang.
           </p>
         </div>
       </section>
@@ -391,10 +390,10 @@ export function ProfileFormPage() {
                 className="btn-secondary-light"
                 onClick={() => navigateTo('category')}
               >
-                ← Ganti Kategori Peran
+                Ganti Kategori Peran
               </button>
               <button type="submit" className="btn-primary-lime">
-                Simpan & Lihat Ringkasan Data →
+                Simpan & Lihat Ringkasan Data
               </button>
             </div>
           </form>
